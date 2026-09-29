@@ -1,35 +1,56 @@
-/*
- * comment
- *
- * */ 
 #include<stdio.h>
 #include<stdbool.h>
 
+/*
+ * comment
+ *
+ * */ #define TEST 0
+#define CODE 0
+#define LINE_COMMENT 1
+#define BLOCK_COMMENT 2
+
 int main() {
-	int c, next;
-	bool inside_block = 0;
-	while( (c = getchar()) != EOF && (next = getchar()) != EOF) {
-		if( c == '/' && next == '*' && !inside_block ) {
-			inside_block = 1;
+	int c, n;
+	int state = CODE;
+
+	while((c = getchar()) != EOF) {
+		if(c == '/' && state == CODE) {
+			n = getchar();
+			if(n == '*') {
+				state = BLOCK_COMMENT;
+				continue;
+			}
+			if(n == '/') {
+				state = LINE_COMMENT;
+				continue;
+			}
+			putchar(c);
+			putchar(n);
 			continue;
 		}
 
-		if( c == '*' && next == '/' && inside_block ) {
-			inside_block = 0;
-			continue;
+		if(state == BLOCK_COMMENT && c == '*') {
+			n = getchar();
+			if(n == '/') {
+				state = CODE;
+				int nn = getchar();
+				if(nn != '\n')
+					putchar(nn);
+				continue;
+			}
 		}
 
-		if(inside_block) {
+		if(state == LINE_COMMENT && c == '\n') {
+			state = CODE;
+			putchar('\n'); // comment 1
 			continue;
 		}
+		// content
 
-		putchar(c);
-		putchar(next);
-
+		if(state == CODE) {
+			putchar(c);
+		}
 	}
-
-	if(c != EOF)
-		putchar(c);
 
 	return 0;
 }
