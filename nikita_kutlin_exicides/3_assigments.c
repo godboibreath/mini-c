@@ -40,6 +40,33 @@ int main(void) {
 	float b_parallelepiped = 8.9;
 	float c_parallelepiped = 0.12;
 	float v_parallelepiped = a_parallelepiped * b_parallelepiped * c_parallelepiped;
-	// to be continued...
+	//ex.#26
+	float r1_cylin_hole = 3.4;
+	float r2_cylin_hole = 5.6;
+	float h_cylin_hole = 7.8;
+	float v_cylin_hole = M_PI * h * (r2_cylin_hole * r2_cylin_hole - r1_cylin_hole * r1_cylin_hole);
+	//ex.#27
+	float r_cone = 9.012;
+	float h_cone = 3.45;
+	float s = r * r * h * M_PI / 3;
+	//ex.#28
+	int F = 67;
+	float C = 5.0/9 * (F - 32);
+	//ex.#29
+	float U = 8.9;
+	float R = 10.3;
+	float I = U / R;
+	//ex.#30	
+	float R_reverse = U / I;
+	//ex.#31
+	float R1 = 4.5, R2 = 6.78, R3 = 9.12, R_total;
+	R_total = R1 + R2 + R3;
+	//ex.#32
+	float r1 = 34.56, r2 = 78.9102;
+	float r_total = r1 * r2 / (r1 + r2);
+	//ex.#33
+	float R_om = 23.4567;
+	float R_kom = R_om * 1000;
+
 	return 0;
 }
